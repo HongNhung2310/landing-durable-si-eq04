@@ -5,96 +5,162 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vers un management durable des systèmes d'information ?</title>
   <style>
+    :root {
+      --violet: #7a3e91;
+      --violet-dark: #53256e;
+      --gold: #f5a623;
+      --gold-light: #ffd77a;
+      --white: #ffffff;
+      --light-bg: #f8f6f9;
+      --text: #2e2e2e;
+    }
+
     body {
-      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0;
-      background-color: #f7f5f8;
-      color: #333;
+      background-color: var(--light-bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
+    /* --- HEADER MODERNE --- */
     header {
-      background-color: #7a3e91; /* Violet inspiré de la couverture */
-      color: #fff;
+      position: relative;
+      background: linear-gradient(135deg, var(--violet-dark) 0%, var(--violet) 80%);
+      color: var(--white);
       text-align: center;
-      padding: 60px 20px;
+      padding: 100px 20px;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: -20%;
+      left: -20%;
+      width: 140%;
+      height: 140%;
+      background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1), transparent 60%);
+      transform: rotate(15deg);
     }
 
     header h1 {
-      font-size: 2em;
-      margin-bottom: 10px;
-      font-weight: 700;
+      position: relative;
+      font-size: 2.6em;
+      font-weight: 800;
+      margin-bottom: 15px;
+      letter-spacing: 0.5px;
+      z-index: 2;
     }
 
-    header p {
-      font-size: 1.1em;
-      opacity: 0.9;
+    .header-subtitle {
+      position: relative;
+      display: inline-block;
+      font-size: 1.25em;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      padding: 12px 24px;
+      border-radius: 12px;
+      z-index: 2;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
+    /* --- SECTION À PROPOS --- */
     section {
-      max-width: 850px;
-      margin: 40px auto;
-      padding: 0 20px;
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 25px;
     }
 
-    .cover {
-      text-align: center;
-      margin-bottom: 40px;
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      padding: 40px;
+      overflow: hidden;
     }
 
-    .cover img {
-      max-width: 220px;           /* limite la largeur sur desktop */
-      width: 80%;                 /* responsive sur mobile */
+    .about img {
+      width: 240px;
       height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+      flex-shrink: 0;
       transition: transform 0.3s ease;
     }
 
-    .cover img:hover {
+    .about img:hover {
       transform: scale(1.03);
     }
 
-    h2 {
-      color: #7a3e91;
-      margin-top: 40px;
+    .about-text h2 {
+      color: var(--violet);
+      margin-top: 0;
+      font-size: 1.6em;
+    }
+
+    .highlight-box {
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      padding: 14px 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #4a3500;
+      text-align: center;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+      animation: pulse 2.5s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.03); opacity: 0.9; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     .cta-button {
       display: inline-block;
-      background-color: #f5a623;  /* doré rappel du titre */
-      color: white;
+      background-color: var(--violet);
+      color: var(--white);
       text-decoration: none;
-      font-weight: bold;
-      padding: 14px 26px;
-      border-radius: 5px;
-      margin-top: 20px;
-      transition: background-color 0.3s ease;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 8px;
+      margin-top: 25px;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
     }
 
     .cta-button:hover {
-      background-color: #d48806;
+      background-color: var(--violet-dark);
+      transform: translateY(-2px);
     }
 
+    /* --- FORMULAIRE --- */
     form {
-      background-color: #fff;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      margin-top: 20px;
+      background-color: var(--white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      margin-top: 25px;
+    }
+
+    form label {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 6px;
     }
 
     form input[type="text"],
     form input[type="email"] {
       width: 100%;
       padding: 12px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    form label {
-      font-weight: 500;
+      border-radius: 6px;
+      font-size: 1em;
     }
 
     form input[type="checkbox"] {
@@ -102,39 +168,44 @@
     }
 
     form button {
-      background-color: #7a3e91;
-      color: white;
+      background-color: var(--gold);
+      color: #4a3500;
       border: none;
-      padding: 12px 20px;
-      border-radius: 5px;
+      padding: 12px 22px;
+      border-radius: 6px;
       font-size: 1em;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
 
     form button:hover {
-      background-color: #5e2d73;
+      background-color: var(--gold-light);
+      transform: translateY(-2px);
     }
 
     footer {
       text-align: center;
-      background-color: #7a3e91;
+      background: var(--violet-dark);
       color: white;
-      padding: 25px 10px;
-      margin-top: 50px;
+      padding: 35px 20px;
+      margin-top: 60px;
+      font-size: 0.95em;
     }
 
     footer a {
-      color: #f5a623;
+      color: var(--gold);
       text-decoration: none;
+      font-weight: 600;
     }
 
-    @media (max-width: 600px) {
-      header {
-        padding: 40px 15px;
+    @media (max-width: 768px) {
+      .about {
+        flex-direction: column;
+        text-align: center;
       }
-      header h1 {
-        font-size: 1.6em;
+      .about img {
+        width: 70%;
       }
     }
   </style>
@@ -144,33 +215,33 @@
 
 <header>
   <h1>Vers un management durable des systèmes d'information ?</h1>
-  <p>Découvrez les leviers pour un numérique plus responsable</p>
+  <div class="header-subtitle">Le guide de référence pour un numérique responsable en 2025</div>
 </header>
 
-<section>
-  <div class="cover">
-    <img src="https://management-datascience.org/wp-content/uploads/2025/09/cover-front-2-scaled.jpg" alt="Couverture du livre Vers un management durable des systèmes d’information ?">
+<section class="about">
+  <img src="https://management-datascience.org/wp-content/uploads/2025/09/cover-front-2-scaled.jpg" 
+       alt="Couverture du livre Vers un management durable des systèmes d’information ?">
+
+  <div class="about-text">
+    <h2>📘 À propos de l’ouvrage</h2>
+    <p>
+      Comment concilier performance numérique et durabilité environnementale ?  
+      Cet ouvrage collectif, publié par <strong>Management & Datascience</strong>, propose une réflexion inédite sur le futur des SI responsables, soutenue par des experts du domaine.
+    </p>
+
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVrB-RCPMZt94jGdbh1RzTUm521kTmUT8qAMZSLTGAm4G_qg/viewform" 
+       class="cta-button" target="_blank">🧩 Participer au sondage</a>
+
+    <div class="highlight-box">
+      🎁 En participant au sondage, recevez par e-mail un <strong>code promo exclusif de -20 %</strong> pour l’achat du livre !
+    </div>
   </div>
-
-  <h2>📘 À propos de l’ouvrage</h2>
-  <p>
-    Comment rendre les systèmes d’information plus durables, tout en préservant la performance et l’innovation ?
-    Cet ouvrage collectif, publié par <strong>Management & Datascience</strong>, propose une réflexion pluridisciplinaire 
-    sur la durabilité des SI dans un contexte de transformation numérique.
-  </p>
-
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVrB-RCPMZt94jGdbh1RzTUm521kTmUT8qAMZSLTGAm4G_qg/viewform" 
-     class="cta-button" target="_blank">🎯 Participer au sondage</a>
-
-  <p style="margin-top: 20px;">
-    🎁 En remerciement, recevez par e-mail un <strong>code promotionnel de -20 %</strong> pour l’achat du livre après votre participation.
-  </p>
 </section>
 
 <section>
   <h2>🛒 Acheter le livre</h2>
   <p>
-    Disponible dès maintenant sur la plateforme <strong>Management & Datascience</strong>.
+    Découvrez le livre sur la plateforme <strong>Management & Datascience</strong> :
   </p>
   <a href="https://management-datascience.org/books/65061/" 
      class="cta-button" target="_blank">Accéder à la page du livre</a>
@@ -179,25 +250,24 @@
 <section>
   <h2>📩 Restez informé</h2>
   <form action="https://your-brevo-form-endpoint" method="POST">
-    <label for="name">Nom :</label><br>
-    <input type="text" id="name" name="name" required><br>
+    <label for="name">Nom :</label>
+    <input type="text" id="name" name="name" required>
 
-    <label for="email">Email :</label><br>
-    <input type="email" id="email" name="email" required><br>
+    <label for="email">Email :</label>
+    <input type="email" id="email" name="email" required>
 
-    <input type="checkbox" id="consent" name="consent" required>
-    <label for="consent">J’accepte de recevoir des actualités sur les systèmes d’information durables.</label><br><br>
+    <div style="margin-bottom: 20px;">
+      <input type="checkbox" id="consent" name="consent" required>
+      <label for="consent">J’accepte de recevoir des actualités sur les systèmes d’information durables.</label>
+    </div>
 
-    <button type="submit"
-      onclick="gtag('event', 'lead_form_submit', { 'event_category': 'Formulaire', 'event_label': 'Landing Page SI Durable' });">
-      Je m’inscris
-    </button>
+    <button type="submit">Je m’inscris</button>
   </form>
 </section>
 
 <footer>
   © 2025 – Management & Datascience (MDS)<br>
-  Une initiative pour un numérique plus durable
+  Une initiative pour un numérique plus durable 🌍
 </footer>
 
 <!-- Google Analytics 4 tracking -->
