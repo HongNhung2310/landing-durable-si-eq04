@@ -23,7 +23,6 @@
       line-height: 1.6;
     }
 
-    /* --- HEADER --- */
     header {
       text-align: center;
       background: linear-gradient(135deg, var(--violet-dark) 0%, var(--violet) 80%);
@@ -54,30 +53,31 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
-    /* --- SECTION LIVRE --- */
-    .book-section {
+    /* --- BLOC LIVRE + SONADGE --- */
+    .book-survey-section {
       display: flex;
-      align-items: flex-start;
-      gap: 40px;
-      max-width: 1000px;
+      gap: 30px;
+      max-width: 1200px;
       margin: 60px auto;
-      padding: 0 25px;
-      background: var(--white);
-      border-radius: 18px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      overflow: hidden;
+      padding: 0 20px;
       flex-wrap: wrap;
     }
 
-    .book-image {
-      flex: 1 1 300px;
-      min-width: 240px;
-      text-align: center;
+    .book-section {
+      flex: 1 1 100%;
+      display: flex;
+      gap: 20px;
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      padding: 20px;
+      align-items: flex-start;
+      flex-wrap: wrap;
     }
 
     .book-image img {
       width: 100%;
-      max-width: 300px;
+      max-width: 250px;
       border-radius: 12px;
       box-shadow: 0 6px 14px rgba(0,0,0,0.15);
       transition: transform 0.3s ease;
@@ -88,8 +88,8 @@
     }
 
     .book-content {
-      flex: 2 1 400px;
-      padding: 20px 0;
+      flex: 1;
+      min-width: 250px;
     }
 
     .book-content h2 {
@@ -100,14 +100,18 @@
 
     .highlight-box {
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      padding: 14px 20px;
-      border-radius: 8px;
+      padding: 15px;
+      border-radius: 12px;
       margin-top: 20px;
       font-weight: 600;
       color: #4a3500;
       text-align: center;
       box-shadow: 0 3px 6px rgba(0,0,0,0.15);
       animation: pulse 2.5s infinite ease-in-out;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
     }
 
     @keyframes pulse {
@@ -116,28 +120,34 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* --- FORMULAIRE GOOGLE --- */
-    .form-section {
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 30px 25px;
-      background: var(--white);
-      border-radius: 18px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    .survey-button {
+      background-color: var(--violet);
+      color: var(--white);
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      font-size: 1em;
     }
 
-    .form-section h2 {
-      color: var(--violet);
-      font-size: 1.8em;
-      margin-top: 0;
-      text-align: center;
+    .survey-button:hover {
+      background-color: var(--violet-dark);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
     }
 
-    .form-section iframe {
+    .form-iframe {
       width: 100%;
+      min-height: 800px;
       border: none;
       border-radius: 12px;
-      min-height: 1200px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      margin-top: 20px;
+      display: none;
+      transition: opacity 0.5s ease;
     }
 
     /* --- ACHAT LIVRE --- */
@@ -175,7 +185,6 @@
       transform: translateY(-2px);
     }
 
-    /* --- FOOTER --- */
     footer {
       text-align: center;
       background: var(--violet-dark);
@@ -191,14 +200,14 @@
       font-weight: 600;
     }
 
-    /* --- RESPONSIVE --- */
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
       .book-section {
         flex-direction: column;
         align-items: center;
       }
       .book-image img {
         max-width: 70%;
+        margin-bottom: 20px;
       }
     }
   </style>
@@ -211,28 +220,27 @@
   <div class="header-subtitle">Le guide de référence pour un numérique responsable en 2025</div>
 </header>
 
-<section class="book-section">
-  <div class="book-image">
-    <img src="https://management-datascience.org/wp-content/uploads/2025/09/cover-front-2-scaled.jpg" 
-         alt="Couverture du livre Vers un management durable des systèmes d’information ?">
-  </div>
-  <div class="book-content">
-    <h2>📘 À propos de l’ouvrage</h2>
-    <p>
-      Comment concilier performance numérique et durabilité environnementale ?  
-      Cet ouvrage collectif, publié par <strong>Management & Datascience</strong>, propose une réflexion inédite sur le futur des SI responsables, soutenue par des experts du domaine.
-    </p>
-    <div class="highlight-box">
-      🎁 En participant au sondage, recevez par e-mail un <strong>code promo exclusif de -20 %</strong> pour l’achat du livre !
+<section class="book-survey-section">
+  <div class="book-section">
+    <div class="book-image">
+      <img src="https://management-datascience.org/wp-content/uploads/2025/09/cover-front-2-scaled.jpg" 
+           alt="Couverture du livre Vers un management durable des systèmes d’information ?">
+    </div>
+    <div class="book-content">
+      <h2>📘 À propos de l’ouvrage</h2>
+      <p>
+        Comment concilier performance numérique et durabilité environnementale ?  
+        Cet ouvrage collectif, publié par <strong>Management & Datascience</strong>, propose une réflexion inédite sur le futur des SI responsables, soutenue par des experts du domaine.
+      </p>
+      <div class="highlight-box">
+        🎁 En participant au sondage, recevez par e-mail un <strong>code promo exclusif de -20 %</strong> pour l’achat du livre !
+        <button class="survey-button" onclick="toggleForm()">Répondre au sondage</button>
+      </div>
+      <iframe class="form-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSdVrB-RCPMZt94jGdbh1RzTUm521kTmUT8qAMZSLTGAm4G_qg/viewform?embedded=true">
+        Chargement…
+      </iframe>
     </div>
   </div>
-</section>
-
-<section class="form-section">
-  <h2>📩 Participez au sondage</h2>
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVrB-RCPMZt94jGdbh1RzTUm521kTmUT8qAMZSLTGAm4G_qg/viewform?embedded=true">
-    Chargement…
-  </iframe>
 </section>
 
 <section class="purchase-section">
@@ -248,7 +256,17 @@
   Une initiative pour un numérique plus durable 🌍
 </footer>
 
-
+<script>
+  function toggleForm() {
+    const iframe = document.querySelector('.form-iframe');
+    if (iframe.style.display === 'block') {
+      iframe.style.display = 'none';
+    } else {
+      iframe.style.display = 'block';
+      iframe.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYT7HEKXYY"></script>
 <script>
@@ -261,3 +279,5 @@
 
 </body>
 </html>
+
+
