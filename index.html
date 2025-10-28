@@ -14,6 +14,39 @@
       --light-bg: #f8f6f9;
       --text: #2e2e2e;
     }
+<script>
+  function toggleForm() {
+    const iframe = document.querySelector('.form-iframe');
+    if (iframe.style.display === 'block') {
+      iframe.style.display = 'none';
+    } else {
+      iframe.style.display = 'block';
+      iframe.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Dynamique : ajuster la hauteur de l'iframe quand le contenu change
+  document.addEventListener("DOMContentLoaded", () => {
+    const iframe = document.querySelector(".form-iframe");
+
+    if (iframe) {
+      iframe.addEventListener("load", () => {
+        try {
+          // Tentative d’accès au contenu (ne marchera pas car cross-domain)
+          const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+          const newHeight = innerDoc.body.scrollHeight + 50;
+          iframe.style.height = newHeight + "px";
+        } catch (e) {
+          // Alternative : ajustement approximatif (car on ne peut pas lire le contenu)
+          // Ici, on agrandit temporairement la hauteur pour que le bas soit visible
+          iframe.style.height = "1200px";
+          iframe.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+  });
+</script>
+
 
     body {
       font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
@@ -266,6 +299,10 @@
       iframe.scrollIntoView({ behavior: 'smooth' });
     }
   }
+  iframe.addEventListener("load", () => {
+  iframe.style.height = "1400px"; // ou plus selon la taille de ton second form
+  iframe.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYT7HEKXYY"></script>
