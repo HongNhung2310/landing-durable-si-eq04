@@ -14,39 +14,6 @@
       --light-bg: #f8f6f9;
       --text: #2e2e2e;
     }
-<script>
-  function toggleForm() {
-    const iframe = document.querySelector('.form-iframe');
-    if (iframe.style.display === 'block') {
-      iframe.style.display = 'none';
-    } else {
-      iframe.style.display = 'block';
-      iframe.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-
-  // Dynamique : ajuster la hauteur de l'iframe quand le contenu change
-  document.addEventListener("DOMContentLoaded", () => {
-    const iframe = document.querySelector(".form-iframe");
-
-    if (iframe) {
-      iframe.addEventListener("load", () => {
-        try {
-          // Tentative d’accès au contenu (ne marchera pas car cross-domain)
-          const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-          const newHeight = innerDoc.body.scrollHeight + 50;
-          iframe.style.height = newHeight + "px";
-        } catch (e) {
-          // Alternative : ajustement approximatif (car on ne peut pas lire le contenu)
-          // Ici, on agrandit temporairement la hauteur pour que le bas soit visible
-          iframe.style.height = "700px";
-          iframe.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    }
-  });
-</script>
-
 
     body {
       font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
@@ -60,7 +27,7 @@
       text-align: center;
       background: linear-gradient(135deg, var(--violet-dark) 0%, var(--violet) 80%);
       color: var(--white);
-      padding: 40px 20px 40px;
+      padding: 40px 20px;
       position: relative;
       overflow: hidden;
     }
@@ -70,8 +37,6 @@
       margin-bottom: 15px;
       font-weight: 800;
       letter-spacing: 0.5px;
-      z-index: 1;
-      position: relative;
     }
 
     .header-subtitle {
@@ -81,31 +46,55 @@
       backdrop-filter: blur(8px);
       padding: 12px 24px;
       border-radius: 12px;
-      z-index: 1;
-      position: relative;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
-    /* --- BLOC LIVRE + SONADGE --- */
-    .book-survey-section {
+    /* --- PAGE LAYOUT --- */
+    .page-layout {
       display: flex;
       gap: 30px;
-      max-width: 1200px;
-      margin: 60px auto;
+      max-width: 1400px;
+      margin: 40px auto;
       padding: 0 20px;
-      flex-wrap: wrap;
+      align-items: flex-start;
     }
 
+    .main-column {
+      flex: 1;
+      min-width: 0; /* important pour que flex-shrink fonctionne */
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    .mds-sidebar {
+      flex: 0 0 300px; /* largeur fixe mais flexible */
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      padding: 20px;
+      height: fit-content;
+    }
+
+    @media (max-width: 992px) {
+      .page-layout {
+        flex-direction: column;
+      }
+      .mds-sidebar {
+        width: 100%;
+      }
+    }
+
+    /* --- BOOK SECTION --- */
     .book-section {
-      flex: 1 1 100%;
       display: flex;
       gap: 20px;
       background: var(--white);
       border-radius: 18px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.1);
       padding: 20px;
-      align-items: flex-start;
       flex-wrap: wrap;
+      align-items: flex-start;
     }
 
     .book-image img {
@@ -140,11 +129,11 @@
       color: #4a3500;
       text-align: center;
       box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-      animation: pulse 2.5s infinite ease-in-out;
       display: flex;
       flex-direction: column;
       gap: 15px;
       align-items: center;
+      animation: pulse 2.5s infinite ease-in-out;
     }
 
     @keyframes pulse {
@@ -183,15 +172,13 @@
       transition: opacity 0.5s ease;
     }
 
-    /* --- ACHAT LIVRE --- */
+    /* --- PURCHASE SECTION --- */
     .purchase-section {
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 30px 25px;
       background: var(--white);
       border-radius: 18px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.08);
       text-align: center;
+      padding: 30px 25px;
     }
 
     .purchase-section h2 {
@@ -233,87 +220,32 @@
       font-weight: 600;
     }
 
-    @media (max-width: 992px) {
-      .book-section {
-        flex-direction: column;
-        align-items: center;
-      }
-      .book-image img {
-        max-width: 70%;
-        margin-bottom: 20px;
-      }
+    /* --- SIDEBAR --- */
+    .mds-sidebar h3 {
+      color: var(--violet);
+      font-size: 1.3em;
+      margin-top: 0;
+      margin-bottom: 15px;
     }
-    .popup-overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
 
-/* --- SIDEBAR MDS ARTICLES --- */
-.page-layout {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
+    .mds-sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
 
-/* Zone principale */
-.main-content {
-  flex: 1 1 65%; 
-  min-width: 280px;
-}
+    .mds-sidebar li {
+      margin-bottom: 18px;
+    }
 
-/* Sidebar */
-.mds-sidebar {
-  flex: 0 0 280px; /* largeur fixe mais flexible */
-  max-width: 320px;
-  margin-left: auto;
-  background: #f9f9f9;
-  padding: 1.2rem;
-  border-radius: 8px;
-  border: 1px solid #eee;
-  height: fit-content;
-}
+    .mds-sidebar a {
+      color: var(--violet-dark);
+      font-weight: 600;
+      text-decoration: none;
+    }
 
-.mds-sidebar h3 {
-  margin-top: 0;
-}
-
-.mds-sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.mds-sidebar li {
-  margin-bottom: 0.8rem;
-}
-
-.mds-sidebar a {
-  text-decoration: none;
-  color: #0066cc;
-}
-
-.mds-sidebar a:hover {
-  text-decoration: underline;
-}
-
-/* Mobile : sidebar passe en dessous */
-@media (max-width: 900px) {
-  .page-layout {
-    flex-direction: column;
-  }
-
-  .mds-sidebar {
-    max-width: 100%;
-    width: 100%;
-  }
-}
-
+    .mds-sidebar a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 
@@ -325,93 +257,59 @@
 </header>
 
 <div class="page-layout">
-  
 
+  <!-- Colonne principale -->
   <div class="main-column">
-  <div class="book-section">
-    <div class="book-image">
-      <img src="https://management-datascience.org/wp-content/uploads/2025/09/cover-front-2-scaled.jpg" 
-           alt="Couverture du livre Vers un management durable des systèmes d’information ?">
-    </div>
-    <div class="book-content">
-      <h2>📘 À propos de l’ouvrage</h2>
-      <p>
-        Le numérique pèse lourd sur l’environnement. Ce livre vous donne les clés pour réduire 
-        l’empreinte des systèmes d’information sans freiner l’innovation.
-      </p>
-      
-      <p>
-        Rédigé par <strong>50 experts</strong> du numérique et du management, il propose :
-      </p>
-      
-      <ul style="list-style: none;">
-        <li>✔ des leviers d’action concrets,</li>
-        <li>✔ des retours d’expérience opérationnels,</li>
-        <li>✔ des outils pour piloter la décarbonation des SI,</li>
-        <li>✔ une vision claire des enjeux techniques, organisationnels et sociétaux.</li>
-      </ul>
-      
-      <p>
-        De la sobriété des datacenters à l’écoconception logicielle, cet ouvrage est 
-        <strong>la référence</strong> pour celles et ceux qui veulent aligner transition digitale 
-        et transition écologique — chercheurs, professionnels, décideurs publics ou étudiants.
-      </p>
-<div class="highlight-box">
-        🎁 Recevez par e-mail un code de réduction –20 % et un extrait gratuit de 30 pages en renseignant vos informations ci-dessous.
-        <button class="survey-button" onclick="toggleForm()">Cliquez-ici !</button>
+    <div class="book-section">
+      <div class="book-image">
+        <img src="https://management-datascience.org/wp-content/uploads/2025/09/cover-front-2-scaled.jpg" 
+             alt="Couverture du livre">
       </div>
-     <iframe class="form-iframe" src="https://a6af6321.sibforms.com/serve/MUIFALkuusshNTK70sRXkSSdPBRpHyYuY35lQUc6SKLSsW645ZWGcbqD7prbozGCXYrRyPanS4NA36FznY_x6eSK4UZh_b9uqJiUoWEAFn-rzGHUjmiCMEDDCDxOgyDhJFb8yvzc3886ueJeNEYH62S0aOH4aFQWdjeqtRhi24nibYpx7IkaWDMOVKGwb0-rucIm00-iH-7GNTD67Q==?embedded=true">
-        Chargement…
-      </iframe>
-     
+      <div class="book-content">
+        <h2>📘 À propos de l’ouvrage</h2>
+        <p>Le numérique pèse lourd sur l’environnement. Ce livre vous donne les clés pour réduire l’empreinte des systèmes d’information sans freiner l’innovation.</p>
+        <p>Rédigé par <strong>50 experts</strong> du numérique et du management, il propose :</p>
+        <ul>
+          <li>✔ des leviers d’action concrets</li>
+          <li>✔ des retours d’expérience opérationnels</li>
+          <li>✔ des outils pour piloter la décarbonation des SI</li>
+          <li>✔ une vision claire des enjeux techniques, organisationnels et sociétaux</li>
+        </ul>
+        <p>De la sobriété des datacenters à l’écoconception logicielle, cet ouvrage est <strong>la référence</strong> pour celles et ceux qui veulent aligner transition digitale et transition écologique — chercheurs, professionnels, décideurs publics ou étudiants.</p>
+
+        <div class="highlight-box">
+          🎁 Recevez par e-mail un code de réduction –20 % et un extrait gratuit de 30 pages.
+          <button class="survey-button" onclick="toggleForm()">Cliquez-ici !</button>
+        </div>
+
+        <iframe class="form-iframe" src="https://a6af6321.sibforms.com/serve/MUIFALkuusshNTK70sRXkSSdPBRpHyYuY35lQUc6SKLSsW645ZWGcbqD7prbozGCXYrRyPanS4NA36FznY_x6eSK4UZh_b9uqJiUoWEAFn-rzGHUjmiCMEDDCDxOgyDhJFb8yvzc3886ueJeNEYH62S0aOH4aFQWdjeqtRhi24nibYpx7IkaWDMOVKGwb0-rucIm00-iH-7GNTD67Q==?embedded=true">
+          Chargement…
+        </iframe>
+      </div>
     </div>
-  </div>
-</section>
 
-<section class="purchase-section">
-  <h2>🛒 Acheter le livre</h2>
-  <p>
-    Découvrez le livre sur la plateforme <strong>Management & Datascience</strong> :
-  </p>
-  <a href="https://management-datascience.org/books/65061/" class="cta-button" target="_blank">Accéder à la page du livre</a>
-</section>
-
-  
+    <section class="purchase-section">
+      <h2>🛒 Acheter le livre</h2>
+      <p>Découvrez le livre sur la plateforme <strong>Management & Datascience</strong> :</p>
+      <a href="https://management-datascience.org/books/65061/" class="cta-button" target="_blank">Accéder à la page du livre</a>
+    </section>
   </div>
 
+  <!-- Sidebar -->
   <aside class="mds-sidebar">
     <h3>Articles MDS en lien avec le livre</h3>
     <p style="font-size: 0.9em; color: #555;">
-      Une sélection d’articles publiés par <strong>Management & Datascience</strong> 
-      qui approfondissent les thématiques abordées dans l’ouvrage.
+      Une sélection d’articles publiés par <strong>Management & Datascience</strong> qui approfondissent les thématiques abordées dans l’ouvrage.
     </p>
-
     <ul>
-      <li>
-        <a href="https://management-datascience.org/articles/63628/" target="_blank">
-          Sobriété numérique en entreprise : entre engagement et paradoxes
-        </a>
-      </li>
-      <li>
-        <a href="https://management-datascience.org/articles/63168/" target="_blank">
-          La mobilité autrement : décarboner la logistique via les SI
-        </a>
-      </li>
-      <li>
-        <a href="https://management-datascience.org/articles/66909/" target="_blank">
-          SI et décarbonation des achats dans la supply chain
-        </a>
-      </li>
-      <li>
-        <a href="#" style="pointer-events:none; color:#999;">
-          Quand les organisations se consument (référence en cours)
-        </a>
-      </li>
+      <li><a href="https://management-datascience.org/articles/63628/" target="_blank">Sobriété numérique en entreprise : entre engagement et paradoxes</a></li>
+      <li><a href="https://management-datascience.org/articles/63168/" target="_blank">La mobilité autrement : décarboner la logistique via les SI</a></li>
+      <li><a href="https://management-datascience.org/articles/66909/" target="_blank">SI et décarbonation des achats dans la supply chain</a></li>
+      <li><a href="#" style="pointer-events:none; color:#999;">Quand les organisations se consument (référence en cours)</a></li>
     </ul>
   </aside>
 
 </div>
-
 
 <footer>
   © 2025 – Management & Datascience (MDS)<br>
@@ -419,47 +317,25 @@
 </footer>
 
 <script>
-
-// Ajuste la hauteur après chargement du formulaire
-const iframe = document.querySelector('.form-iframe');
-iframe.addEventListener("load", () => {
-  iframe.style.height = "850px"; 
-});
-  
-  function toggleForm() {
-    const iframe = document.querySelector('.form-iframe');
-    if (iframe.style.display === 'block') {
-      iframe.style.display = 'none';
-    } else {
-      iframe.style.display = 'block';
-      iframe.scrollIntoView({ behavior: 'smooth' });
-    }
+function toggleForm() {
+  const iframe = document.querySelector('.form-iframe');
+  if (iframe.style.display === 'block') {
+    iframe.style.display = 'none';
+  } else {
+    iframe.style.display = 'block';
+    iframe.scrollIntoView({ behavior: 'smooth' });
   }
-  iframe.addEventListener("load", () => {
-  iframe.style.height = "850px"; // ou plus selon la taille de ton second form
-  iframe.scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
+}
 </script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYT7HEKXYY"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-BYT7HEKXYY');
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
