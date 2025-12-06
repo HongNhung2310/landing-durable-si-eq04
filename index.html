@@ -66,18 +66,19 @@
 
     .main-column {
       flex: 1;
-      min-width: 0; 
+      min-width: 0;
       display: flex;
       flex-direction: column;
       gap: 60px;
     }
 
-    .mds-sidebar {
+    .purchase-sidebar {
       flex: 0 0 300px;
       background: var(--white);
       border-radius: 18px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      padding: 20px;
+      padding: 30px 25px;
+      text-align: center;
       height: fit-content;
     }
 
@@ -85,7 +86,7 @@
       .page-layout {
         flex-direction: column;
       }
-      .mds-sidebar {
+      .purchase-sidebar {
         width: 100%;
       }
     }
@@ -177,56 +178,15 @@
       transition: opacity 0.5s ease;
     }
 
-    /* --- PURCHASE SECTION --- */
-    .purchase-section {
+    /* --- OLD SIDEBAR (articles) --- */
+    .mds-sidebar {
       background: var(--white);
       border-radius: 18px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      text-align: center;
-      padding: 30px 25px;
-      margin-bottom: 40px;
-    }
-
-    .purchase-section h2 {
-      color: var(--violet);
-      font-size: 1.8em;
-      margin-top: 0;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background-color: var(--violet);
-      color: var(--white);
-      text-decoration: none;
-      font-weight: 600;
-      padding: 14px 28px;
-      border-radius: 8px;
-      margin-top: 20px;
-      transition: all 0.3s ease;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-    }
-
-    .cta-button:hover {
-      background-color: var(--violet-dark);
-      transform: translateY(-2px);
-    }
-
-    footer {
-      text-align: center;
-      background: var(--violet-dark);
-      color: white;
-      padding: 35px 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      padding: 20px;
       margin-top: 60px;
-      font-size: 0.95em;
     }
 
-    footer a {
-      color: var(--gold);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    /* --- SIDEBAR --- */
     .mds-sidebar h3 {
       color: var(--violet);
       font-size: 1.3em;
@@ -252,22 +212,29 @@
     .mds-sidebar a:hover {
       text-decoration: underline;
     }
+
+    footer {
+      text-align: center;
+      background: var(--violet-dark);
+      color: white;
+      padding: 35px 20px;
+      margin-top: 60px;
+      font-size: 0.95em;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+    }
   </style>
 </head>
-
 <body>
 
 <header>
   <h1>Vers un management durable des systèmes d'information ?</h1>
   <div class="header-subtitle">Le guide essentiel pour un numérique plus sobre, responsable et performant</div>
 </header>
-
-<!-- PURCHASE SECTION en haut -->
-<section class="purchase-section">
-  <h2>🛒 Acheter le livre</h2>
-  <p>Découvrez le livre sur la plateforme <strong>Management & Datascience</strong> :</p>
-  <a href="https://management-datascience.org/books/65061/" class="cta-button" target="_blank">Accéder à la page du livre</a>
-</section>
 
 <div class="page-layout">
 
@@ -302,21 +269,28 @@
     </div>
   </div>
 
-  <!-- Sidebar -->
-  <aside class="mds-sidebar">
-    <h3>Articles MDS en lien avec le livre</h3>
-    <p style="font-size: 0.9em; color: #555;">
-      Une sélection d’articles publiés par <strong>Management & Datascience</strong> qui approfondissent les thématiques abordées dans l’ouvrage.
-    </p>
-    <ul>
-      <li><a href="https://management-datascience.org/articles/63628/" target="_blank">Sobriété numérique en entreprise : entre engagement et paradoxes</a></li>
-      <li><a href="https://management-datascience.org/articles/63168/" target="_blank">La mobilité autrement : décarboner la logistique via les SI</a></li>
-      <li><a href="https://management-datascience.org/articles/66909/" target="_blank">SI et décarbonation des achats dans la supply chain</a></li>
-      <li><a href="https://management-datascience.org/articles/67891/" target="_blank">Quand les organisations se consument : comprendre l'entropie organisationnelle à l'ère de l'IA</a></li>
-    </ul>
+  <!-- Purchase section devient sidebar -->
+  <aside class="purchase-sidebar">
+    <h2>🛒 Acheter le livre</h2>
+    <p>Découvrez le livre sur la plateforme <strong>Management & Datascience</strong> :</p>
+    <a href="https://management-datascience.org/books/65061/" class="cta-button" target="_blank">Accéder à la page du livre</a>
   </aside>
 
 </div>
+
+<!-- Ancienne sidebar descend en bas -->
+<aside class="mds-sidebar">
+  <h3>Articles MDS en lien avec le livre</h3>
+  <p style="font-size: 0.9em; color: #555;">
+    Une sélection d’articles publiés par <strong>Management & Datascience</strong> qui approfondissent les thématiques abordées dans l’ouvrage.
+  </p>
+  <ul>
+    <li><a href="https://management-datascience.org/articles/63628/" target="_blank">Sobriété numérique en entreprise : entre engagement et paradoxes</a></li>
+    <li><a href="https://management-datascience.org/articles/63168/" target="_blank">La mobilité autrement : décarboner la logistique via les SI</a></li>
+    <li><a href="https://management-datascience.org/articles/66909/" target="_blank">SI et décarbonation des achats dans la supply chain</a></li>
+    <li><a href="https://management-datascience.org/articles/67891/" target="_blank">Quand les organisations se consument : comprendre l'entropie organisationnelle à l'ère de l'IA</a></li>
+  </ul>
+</aside>
 
 <footer>
   © 2025 – Management & Datascience (MDS)<br>
@@ -333,15 +307,6 @@ function toggleForm() {
     iframe.scrollIntoView({ behavior: 'smooth' });
   }
 }
-</script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BYT7HEKXYY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-BYT7HEKXYY');
 </script>
 
 </body>
