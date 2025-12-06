@@ -48,10 +48,11 @@
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
+
     ul {
       list-style: none;
       padding-left: 0;
-  }
+    }
 
     /* --- PAGE LAYOUT --- */
     .page-layout {
@@ -65,14 +66,14 @@
 
     .main-column {
       flex: 1;
-      min-width: 0; /* important pour que flex-shrink fonctionne */
+      min-width: 0; 
       display: flex;
       flex-direction: column;
       gap: 60px;
     }
 
     .mds-sidebar {
-      flex: 0 0 300px; /* largeur fixe mais flexible */
+      flex: 0 0 300px;
       background: var(--white);
       border-radius: 18px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.1);
@@ -91,17 +92,15 @@
 
     /* --- BOOK SECTION --- */
     .book-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 30px;
-  background: var(--white);
-  border-radius: 18px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  min-height: 450px; /* garantit la visibilité au-dessus du pli */
-}
+      display: flex;
+      gap: 20px;
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      padding: 20px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
 
     .book-image img {
       width: 100%;
@@ -185,6 +184,7 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.08);
       text-align: center;
       padding: 30px 25px;
+      margin-bottom: 40px;
     }
 
     .purchase-section h2 {
@@ -262,23 +262,36 @@
   <div class="header-subtitle">Le guide essentiel pour un numérique plus sobre, responsable et performant</div>
 </header>
 
+<!-- PURCHASE SECTION en haut -->
+<section class="purchase-section">
+  <h2>🛒 Acheter le livre</h2>
+  <p>Découvrez le livre sur la plateforme <strong>Management & Datascience</strong> :</p>
+  <a href="https://management-datascience.org/books/65061/" class="cta-button" target="_blank">Accéder à la page du livre</a>
+</section>
+
 <div class="page-layout">
 
   <!-- Colonne principale -->
   <div class="main-column">
-
-    <!-- HERO + BOOK + CTA -->
-    <section class="book-section">
+    <div class="book-section">
       <div class="book-image">
-        <img src="https://management-datascience.org/wp-content/uploads/2025/09/cover-front-2-scaled.jpg" alt="Couverture du livre">
+        <img src="https://management-datascience.org/wp-content/uploads/2025/09/cover-front-2-scaled.jpg" 
+             alt="Couverture du livre">
       </div>
       <div class="book-content">
-        <h2>📘 Achetez le livre dès maintenant</h2>
-        <p>Découvrez le livre sur la plateforme <strong>Management & Datascience</strong> :</p>
-        <a href="https://management-datascience.org/books/65061/" class="cta-button" target="_blank">Accéder à la page du livre</a>
+        <h2>📘 À propos de l’ouvrage</h2>
+        <p>Le numérique pèse lourd sur l’environnement. Ce livre vous donne les clés pour réduire l’empreinte des systèmes d’information sans freiner l’innovation.</p>
+        <p>Rédigé par <strong>50 experts</strong> du numérique et du management, il propose :</p>
+        <ul>
+          <li>✔ des leviers d’action concrets</li>
+          <li>✔ des retours d’expérience opérationnels</li>
+          <li>✔ des outils pour piloter la décarbonation des SI</li>
+          <li>✔ une vision claire des enjeux techniques, organisationnels et sociétaux</li>
+        </ul>
+        <p>De la sobriété des datacenters à l’écoconception logicielle, cet ouvrage est <strong>la référence</strong> pour celles et ceux qui veulent aligner transition digitale et transition écologique — chercheurs, professionnels, décideurs publics ou étudiants.</p>
 
         <div class="highlight-box">
-          🎁 Recevez un code de réduction –20 % et un extrait gratuit de 30 pages.
+          🎁 Recevez par e-mail un code de réduction –20 % et un extrait gratuit de 30 pages.
           <button class="survey-button" onclick="toggleForm()">Cliquez-ici !</button>
         </div>
 
@@ -286,39 +299,28 @@
           Chargement…
         </iframe>
       </div>
-    </section>
-
-    <!-- Détails complets -->
-    <section class="book-details">
-      <h2>📖 À propos de l’ouvrage</h2>
-      <p>Le numérique pèse lourd sur l’environnement. Ce livre vous donne les clés pour réduire l’empreinte des systèmes d’information sans freiner l’innovation.</p>
-      <p>Rédigé par <strong>50 experts</strong> du numérique et du management, il propose :</p>
-      <ul>
-        <li>✔ des leviers d’action concrets</li>
-        <li>✔ des retours d’expérience opérationnels</li>
-        <li>✔ des outils pour piloter la décarbonation des SI</li>
-        <li>✔ une vision claire des enjeux techniques, organisationnels et sociétaux</li>
-      </ul>
-      <p>De la sobriété des datacenters à l’écoconception logicielle, cet ouvrage est <strong>la référence</strong> pour celles et ceux qui veulent aligner transition digitale et transition écologique.</p>
-    </section>
-
+    </div>
   </div>
 
   <!-- Sidebar -->
   <aside class="mds-sidebar">
-    <h3>Articles en lien</h3>
+    <h3>Articles MDS en lien avec le livre</h3>
+    <p style="font-size: 0.9em; color: #555;">
+      Une sélection d’articles publiés par <strong>Management & Datascience</strong> qui approfondissent les thématiques abordées dans l’ouvrage.
+    </p>
     <ul>
-      <li><a href="#">Sobriété numérique en entreprise</a></li>
-      <li><a href="#">La mobilité autrement</a></li>
-      <li><a href="#">SI et décarbonation des achats</a></li>
-      <li><a href="#">Comprendre l'entropie organisationnelle à l'ère de l'IA</a></li>
+      <li><a href="https://management-datascience.org/articles/63628/" target="_blank">Sobriété numérique en entreprise : entre engagement et paradoxes</a></li>
+      <li><a href="https://management-datascience.org/articles/63168/" target="_blank">La mobilité autrement : décarboner la logistique via les SI</a></li>
+      <li><a href="https://management-datascience.org/articles/66909/" target="_blank">SI et décarbonation des achats dans la supply chain</a></li>
+      <li><a href="https://management-datascience.org/articles/67891/" target="_blank">Quand les organisations se consument : comprendre l'entropie organisationnelle à l'ère de l'IA</a></li>
     </ul>
   </aside>
 
 </div>
 
 <footer>
-  © 2025 – Management & Datascience (MDS)
+  © 2025 – Management & Datascience (MDS)<br>
+  Une initiative pour un numérique plus durable 🌍
 </footer>
 
 <script>
@@ -344,6 +346,3 @@ function toggleForm() {
 
 </body>
 </html>
-
-
-
