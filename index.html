@@ -254,31 +254,7 @@
   z-index: 9999;
 }
 
-.popup-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 600px;
-  max-height: 90vh;
-  overflow: auto;
-  position: relative;
-}
 
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 28px;
-  cursor: pointer;
-}
-
-.form-iframe {
-  width: 100%;
-  height: 650px; /* Ajuste selon ton formulaire */
-  border: none;
-}
-    
   </style>
 </head>
 
@@ -318,23 +294,14 @@
         <strong>la référence</strong> pour celles et ceux qui veulent aligner transition digitale 
         et transition écologique — chercheurs, professionnels, décideurs publics ou étudiants.
       </p>
-
-     
-     <div id="popup" class="popup-overlay">
-  <div class="popup-content">
- <div class="highlight-box">
+<div class="highlight-box">
         🎁 Recevez par e-mail un code de réduction –20 % et un extrait gratuit de 30 pages en renseignant vos informations ci-dessous.
-        <button class="survey-button" onclick="openPopup()">Cliquez-ici !</button>
+        <button class="survey-button" onclick="toggleForm()">Cliquez-ici !</button>
       </div>
-    <span class="close-btn" onclick="closePopup()">&times;</span>
-
-    <iframe class="form-iframe"
-      src="https://a6af6321.sibforms.com/serve/MUIFALkuusshNTK70sRXkSSdPBRpHyYuY35lQUc6SKLSsW645ZWGcbqD7prbozGCXYrRyPanS4NA36FznY_x6eSK4UZh_b9uqJiUoWEAFn-rzGHUjmiCMEDDCDxOgyDhJFb8yvzc3886ueJeNEYH62S0aOH4aFQWdjeqtRhi24nibYpx7IkaWDMOVKGwb0-rucIm00-iH-7GNTD67Q==?embedded=true"
-      loading="lazy">
-    </iframe>
-
-  </div>
-</div>
+     <iframe class="form-iframe" src="https://a6af6321.sibforms.com/serve/MUIFALkuusshNTK70sRXkSSdPBRpHyYuY35lQUc6SKLSsW645ZWGcbqD7prbozGCXYrRyPanS4NA36FznY_x6eSK4UZh_b9uqJiUoWEAFn-rzGHUjmiCMEDDCDxOgyDhJFb8yvzc3886ueJeNEYH62S0aOH4aFQWdjeqtRhi24nibYpx7IkaWDMOVKGwb0-rucIm00-iH-7GNTD67Q==?embedded=true">
+        Chargement…
+      </iframe>
+     
     </div>
   </div>
 </section>
@@ -353,14 +320,6 @@
 </footer>
 
 <script>
-
-  function openPopup() {
-  document.getElementById("popup").style.display = "flex";
-}
-
-function closePopup() {
-  document.getElementById("popup").style.display = "none";
-}
 
 // Ajuste la hauteur après chargement du formulaire
 const iframe = document.querySelector('.form-iframe');
@@ -394,6 +353,7 @@ iframe.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
