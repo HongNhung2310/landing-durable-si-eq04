@@ -254,6 +254,66 @@
   z-index: 9999;
 }
 
+/* --- SIDEBAR MDS ARTICLES --- */
+.mds-sidebar {
+  width: 20%;
+  min-width: 250px;
+  background: var(--white);
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  padding: 20px;
+  height: fit-content;
+}
+
+.mds-sidebar h3 {
+  color: var(--violet);
+  font-size: 1.3em;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.mds-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.mds-sidebar li {
+  margin-bottom: 18px;
+}
+
+.mds-sidebar a {
+  color: var(--violet-dark);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mds-sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* Met le layout en 2 colonnes : contenu à gauche + sidebar à droite */
+.page-layout {
+  display: flex;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Colonne principale = 80% */
+.main-column {
+  width: 80%;
+}
+
+/* Version mobile : remettre la sidebar en bas */
+@media (max-width: 992px) {
+  .page-layout {
+    flex-direction: column;
+  }
+  .mds-sidebar {
+    width: 100%;
+  }
+}
 
   </style>
 </head>
@@ -265,7 +325,9 @@
   <div class="header-subtitle">Le guide essentiel pour un numérique plus sobre, responsable et performant</div>
 </header>
 
-<section class="book-survey-section">
+<div class="page-layout">
+
+  <div class="main-column">
   <div class="book-section">
     <div class="book-image">
       <img src="https://management-datascience.org/wp-content/uploads/2025/09/cover-front-2-scaled.jpg" 
@@ -313,6 +375,39 @@
   </p>
   <a href="https://management-datascience.org/books/65061/" class="cta-button" target="_blank">Accéder à la page du livre</a>
 </section>
+<aside class="mds-sidebar">
+  <h3>Articles MDS en lien avec le livre</h3>
+  <p style="font-size: 0.9em; color: #555;">
+    Une sélection d’articles publiés par <strong>Management & Datascience</strong> 
+    qui approfondissent les thématiques abordées dans l’ouvrage.
+  </p>
+
+  <ul>
+    <li>
+      <a href="https://management-datascience.org/articles/63628/" target="_blank">
+        Sobriété numérique en entreprise : entre engagement et paradoxes
+      </a>
+    </li>
+
+    <li>
+      <a href="https://management-datascience.org/articles/63168/" target="_blank">
+        La mobilité autrement : décarboner la logistique via les SI
+      </a>
+    </li>
+
+    <li>
+      <a href="https://management-datascience.org/articles/66909/" target="_blank">
+        SI et décarbonation des achats dans la supply chain
+      </a>
+    </li>
+
+    <li>
+      <a href="#" style="pointer-events:none; color:#999;">
+        Quand les organisations se consument (référence en cours)
+      </a>
+    </li>
+  </ul>
+</aside>
 
 <footer>
   © 2025 – Management & Datascience (MDS)<br>
@@ -353,6 +448,7 @@ iframe.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
