@@ -186,6 +186,18 @@
       padding: 20px;
       margin-top: 60px;
     }
+    .full-width-sidebar {
+    max-width: 100%;
+    width: 100%;
+    margin: 40px auto 0;
+  }
+
+  @media (max-width: 992px) {
+    .full-width-sidebar {
+      width: 100%;
+      margin-top: 40px;
+    }
+  }
 
     .mds-sidebar h3 {
       color: var(--violet);
@@ -271,15 +283,14 @@
 
   <!-- Purchase section devient sidebar -->
   <aside class="purchase-sidebar">
-    <h2>🛒 Acheter le livre</h2>
     <p>Découvrez le livre sur la plateforme <strong>Management & Datascience</strong> :</p>
-    <a href="https://management-datascience.org/books/65061/" class="cta-button" target="_blank">Accéder à la page du livre</a>
+    <h2><a href="https://management-datascience.org/books/65061/" class="cta-button" target="_blank">🛒 Acheter le livre</a></h2>
   </aside>
 
 </div>
 
-<!-- Ancienne sidebar descend en bas -->
-<aside class="mds-sidebar">
+<!-- Ancienne sidebar descend en bas, même largeur que book section -->
+<aside class="mds-sidebar full-width-sidebar">
   <h3>Articles MDS en lien avec le livre</h3>
   <p style="font-size: 0.9em; color: #555;">
     Une sélection d’articles publiés par <strong>Management & Datascience</strong> qui approfondissent les thématiques abordées dans l’ouvrage.
@@ -311,3 +322,4 @@ function toggleForm() {
 
 </body>
 </html>
+
