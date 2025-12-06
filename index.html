@@ -255,62 +255,61 @@
 }
 
 /* --- SIDEBAR MDS ARTICLES --- */
+.page-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* Zone principale */
+.main-content {
+  flex: 1 1 65%; 
+  min-width: 280px;
+}
+
+/* Sidebar */
 .mds-sidebar {
-  width: 20%;
-  min-width: 250px;
-  background: var(--white);
-  border-radius: 18px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  padding: 20px;
+  flex: 0 0 280px; /* largeur fixe mais flexible */
+  max-width: 320px;
+  margin-left: auto;
+  background: #f9f9f9;
+  padding: 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #eee;
   height: fit-content;
 }
 
 .mds-sidebar h3 {
-  color: var(--violet);
-  font-size: 1.3em;
   margin-top: 0;
-  margin-bottom: 15px;
 }
 
 .mds-sidebar ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .mds-sidebar li {
-  margin-bottom: 18px;
+  margin-bottom: 0.8rem;
 }
 
 .mds-sidebar a {
-  color: var(--violet-dark);
-  font-weight: 600;
   text-decoration: none;
+  color: #0066cc;
 }
 
 .mds-sidebar a:hover {
   text-decoration: underline;
 }
 
-/* Met le layout en 2 colonnes : contenu à gauche + sidebar à droite */
-.page-layout {
-  display: flex;
-  gap: 30px;
-  max-width: 1400px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
-
-/* Colonne principale = 80% */
-.main-column {
-  width: 80%;
-}
-
-/* Version mobile : remettre la sidebar en bas */
-@media (max-width: 992px) {
+/* Mobile : sidebar passe en dessous */
+@media (max-width: 900px) {
   .page-layout {
     flex-direction: column;
   }
+
   .mds-sidebar {
+    max-width: 100%;
     width: 100%;
   }
 }
@@ -326,6 +325,7 @@
 </header>
 
 <div class="page-layout">
+  
 
   <div class="main-column">
   <div class="book-section">
@@ -375,39 +375,43 @@
   </p>
   <a href="https://management-datascience.org/books/65061/" class="cta-button" target="_blank">Accéder à la page du livre</a>
 </section>
-<aside class="mds-sidebar">
-  <h3>Articles MDS en lien avec le livre</h3>
-  <p style="font-size: 0.9em; color: #555;">
-    Une sélection d’articles publiés par <strong>Management & Datascience</strong> 
-    qui approfondissent les thématiques abordées dans l’ouvrage.
-  </p>
 
-  <ul>
-    <li>
-      <a href="https://management-datascience.org/articles/63628/" target="_blank">
-        Sobriété numérique en entreprise : entre engagement et paradoxes
-      </a>
-    </li>
+  
+  </div>
 
-    <li>
-      <a href="https://management-datascience.org/articles/63168/" target="_blank">
-        La mobilité autrement : décarboner la logistique via les SI
-      </a>
-    </li>
+  <aside class="mds-sidebar">
+    <h3>Articles MDS en lien avec le livre</h3>
+    <p style="font-size: 0.9em; color: #555;">
+      Une sélection d’articles publiés par <strong>Management & Datascience</strong> 
+      qui approfondissent les thématiques abordées dans l’ouvrage.
+    </p>
 
-    <li>
-      <a href="https://management-datascience.org/articles/66909/" target="_blank">
-        SI et décarbonation des achats dans la supply chain
-      </a>
-    </li>
+    <ul>
+      <li>
+        <a href="https://management-datascience.org/articles/63628/" target="_blank">
+          Sobriété numérique en entreprise : entre engagement et paradoxes
+        </a>
+      </li>
+      <li>
+        <a href="https://management-datascience.org/articles/63168/" target="_blank">
+          La mobilité autrement : décarboner la logistique via les SI
+        </a>
+      </li>
+      <li>
+        <a href="https://management-datascience.org/articles/66909/" target="_blank">
+          SI et décarbonation des achats dans la supply chain
+        </a>
+      </li>
+      <li>
+        <a href="#" style="pointer-events:none; color:#999;">
+          Quand les organisations se consument (référence en cours)
+        </a>
+      </li>
+    </ul>
+  </aside>
 
-    <li>
-      <a href="#" style="pointer-events:none; color:#999;">
-        Quand les organisations se consument (référence en cours)
-      </a>
-    </li>
-  </ul>
-</aside>
+</div>
+
 
 <footer>
   © 2025 – Management & Datascience (MDS)<br>
@@ -448,6 +452,7 @@ iframe.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
